@@ -1,0 +1,8 @@
+# dshbase-catalog bundle patch: mounts the plugin into a dsh profile.
+# Registers search_dsh_plugins / get_dsh_plugin tools for querying the
+# dshbase plugin directory from inside the agent.
+#
+# Install: `dsh plugin add dshbase-catalog`
+- insert:
+    - id: dshbase-catalog
+      name: dshbase-catalog
