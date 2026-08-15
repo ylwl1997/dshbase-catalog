@@ -19,7 +19,7 @@ jobs:
           export DSH_HOME=/tmp/dshhome
           mkdir -p "$DSH_HOME"
           printf 'DEEPSEEK_API_KEY: %s\n' "${{ secrets.DEEPSEEK_API_KEY }}" > "$DSH_HOME/.credentials.yaml"
-          dsh plugin --profile e2e add @deepseek-ai/dsh-base @deepseek-ai/dsh-headless dshbase-catalog
+          dsh plugin --profile e2e add @deepseek-ai/dsh-base@0.1.0-rc.6 @deepseek-ai/dsh-headless@0.1.0-rc.6 dshbase-catalog
           echo "--- profile bundles ---"
           cat "$DSH_HOME/profiles/e2e/package.json"
 
