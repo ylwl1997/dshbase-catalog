@@ -17,9 +17,18 @@ jobs:
       - name: Set up profile with catalog
         run: |
           export DSH_HOME=/tmp/dshhome
-          mkdir -p "$DSH_HOME"
+          mkdir -p "$DSH_HOME/profiles/e2e"
           printf 'DEEPSEEK_API_KEY: %s\n' "${{ secrets.DEEPSEEK_API_KEY }}" > "$DSH_HOME/.credentials.yaml"
-          dsh plugin --profile e2e add @deepseek-ai/dsh-base@0.1.0-rc.6 @deepseek-ai/dsh-headless@0.1.0-rc.6 dshbase-catalog
+          # pnpm v11 默认阻止原生依赖的 build 脚本，预先允许
+          cat > "$DSH_HOME/profiles/e2e/pnpm-workspace.yaml" <<'EOF'
+          allowBuilds:
+            '@deepseek-ai/dsh-subprocess-local': true
+            '@google/genai': true
+            koffi: true
+            node-pty: true
+            protobufjs: true
+          EOF
+          dsh plugin --profile e2e add @deepseek-ai/dsh-base@0.1.0-rc.6 @deepseek-ai/dsh-headless@0.1.0-rc.6 dshbase-catalog@0.2.0
           echo "--- profile bundles ---"
           cat "$DSH_HOME/profiles/e2e/package.json"
 
