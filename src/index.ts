@@ -5,58 +5,163 @@ import catalog from './catalog.json' with { type: 'json' };
 export const name = 'dshbase-catalog';
 export const inject = ['tools'];
 
-const plugins: any[] = (catalog as any).plugins || [];
+interface Plugin {
+  name: string;
+  category: string;
+  url: string;
+  pkg: string;
+  npm: boolean;
+  test: string;
+  desc: string;
+  desc_zh: string;
+  stars: number;
+  install: string;
+  added: string;
+}
+
+const plugins: Plugin[] = (catalog as any).plugins || [];
+const CATEGORIES = ['UI Enhancements', 'Sessions & Messages', 'Tools & Capabilities', 'Workflow & Automation', 'Notifications & Integrations', 'Development & Runtime', 'Just for Fun'];
 
 function text(v: string) {
   return [{ type: 'text' as const, text: v }];
 }
 
+// 按星数降序排好的副本
+const byStars = [...plugins].sort((a, b) => (b.stars || 0) - (a.stars || 0));
+// 按收录时间降序（新收录在前）
+const byNew = [...plugins].sort((a, b) => (b.added || '').localeCompare(a.added || ''));
+
+function fmtHit(p: Plugin, i?: number) {
+  const idx = i !== undefined ? `${i + 1}. ` : '';
+  const star = `★${p.stars || 0}`;
+  const status = p.test === 'verified' ? '已验证' : p.test === 'broken' ? '异常' : '待验证';
+  return `${idx}${p.name} [${status}] ${star}\n   ${p.desc}\n   Install: ${p.install}`;
+}
+
 export function apply(ctx: Context) {
+  // 1. 搜索插件
   ctx.tools.register(defineTool({
     name: 'search_dsh_plugins',
     description:
-      'Search the dshbase plugin directory for DeepSeek Harness plugins. Pass a keyword to match against plugin name, category, or description. Returns matching plugins with their install command and test status.',
+      'Search the dshbase plugin directory for DeepSeek Harness plugins by keyword. Matches against plugin name, category, or description (English & Chinese). Returns each hit with its install command and verification status so you can install it directly.',
     parameters: {
-      query: { type: 'string', required: true, description: 'Keyword to search (e.g. "memory", "terminal", "ui")' },
+      query: { type: 'string', required: true, description: 'Keyword (e.g. "memory", "terminal", "视觉", "浏览器")' },
       limit: { type: 'string', description: 'Max results (default 10)' },
     },
-    output: {
-      schema: { type: 'string' },
-      render: (_a: any, v: string) => text(v),
-    },
+    output: { schema: { type: 'string' }, render: (_a: any, v: string) => text(v) },
     async execute(args: any) {
       const q = (args.query || '').toLowerCase();
       const lim = parseInt(args.limit || '10', 10) || 10;
-      const hits = plugins.filter((p: any) =>
+      const hits = plugins.filter((p) =>
         !q ||
-        (p.name || '').toLowerCase().includes(q) ||
-        (p.category || '').toLowerCase().includes(q) ||
-        (p.desc || '').toLowerCase().includes(q) ||
-        (p.desc_zh || '').toLowerCase().includes(q)
+        p.name.toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q) ||
+        p.desc.toLowerCase().includes(q) ||
+        p.desc_zh.toLowerCase().includes(q)
       ).slice(0, lim);
       if (!hits.length) return `No plugins matched "${args.query}". Try a broader keyword.`;
-      const lines = hits.map((p: any, i: number) =>
-        `${i + 1}. ${p.name} [${p.test}] ★${p.stars || 0}\n   ${p.desc}\n   Install: ${p.install}`
-      );
-      return `Found ${hits.length} plugins (of ${plugins.length} total):\n\n${lines.join('\n\n')}`;
+      return `Found ${hits.length} plugins (of ${plugins.length} on dshbase):\n\n${hits.map((p, i) => fmtHit(p, i)).join('\n\n')}`;
     },
   }));
 
+  // 2. 插件详情 + 安装命令
   ctx.tools.register(defineTool({
     name: 'get_dsh_plugin',
     description:
-      'Get details and the exact install command for a specific DeepSeek Harness plugin from the dshbase directory.',
+      'Get details, verification status, and the exact install command for a specific DeepSeek Harness plugin from the dshbase directory.',
     parameters: {
       name: { type: 'string', required: true, description: 'Plugin name (e.g. "dsh-memory")' },
     },
-    output: {
-      schema: { type: 'string' },
-      render: (_a: any, v: string) => text(v),
-    },
+    output: { schema: { type: 'string' }, render: (_a: any, v: string) => text(v) },
     async execute(args: any) {
-      const p = plugins.find((x: any) => x.name === args.name);
+      const p = plugins.find((x) => x.name === args.name);
       if (!p) return `Plugin "${args.name}" not found. Use search_dsh_plugins to find it.`;
-      return `${p.name} (${p.category})\nStatus: ${p.test} · Stars: ${p.stars || 0}\n${p.desc}\n\nInstall:\n  ${p.install}\n\nMore: ${p.url}`;
+      const status = p.test === 'verified' ? '✅ 已验证 (verified)' : p.test === 'broken' ? '❌ 异常 (broken)' : '⏳ 待验证 (pending)';
+      const src = p.npm ? `npm (${p.pkg})` : 'GitHub source';
+      return [
+        `${p.name} (${p.category})`,
+        `Status: ${status} · ★${p.stars || 0} · ${src}`,
+        '',
+        p.desc,
+        p.desc_zh ? `中文: ${p.desc_zh}` : '',
+        '',
+        'Install:',
+        `  ${p.install}`,
+        '',
+        `More: ${p.url}`,
+      ].filter((l) => l !== '').join('\n');
+    },
+  }));
+
+  // 3. 列出插件（热门 / 新收录 / 分类）
+  ctx.tools.register(defineTool({
+    name: 'list_dsh_plugins',
+    description:
+      'List DeepSeek Harness plugins from dshbase. Use sort="hot" for most-starred, sort="new" for recently added, or pass a category to list plugins in that category.',
+    parameters: {
+      category: { type: 'string', description: 'Category name (e.g. "Tools & Capabilities"). Omit for all categories.' },
+      sort: { type: 'string', description: 'Sort: "hot" (by stars, default) or "new" (recently added)' },
+      limit: { type: 'string', description: 'Max results (default 20)' },
+    },
+    output: { schema: { type: 'string' }, render: (_a: any, v: string) => text(v) },
+    async execute(args: any) {
+      const lim = parseInt(args.limit || '20', 10) || 20;
+      let pool = args.sort === 'new' ? byNew : byStars;
+      if (args.category) {
+        const cat = String(args.category);
+        pool = pool.filter((p) => p.category === cat || p.category.toLowerCase().includes(cat.toLowerCase()));
+      }
+      const hits = pool.slice(0, lim);
+      if (!hits.length) return `No plugins found${args.category ? ` in category "${args.category}"` : ''}.`;
+      const label = args.sort === 'new' ? 'recently added' : 'most-starred';
+      return `Top ${hits.length} ${label} plugins${args.category ? ` in "${args.category}"` : ''}:\n\n${hits.map((p, i) => fmtHit(p, i)).join('\n\n')}`;
+    },
+  }));
+
+  // 4. 站点统计
+  ctx.tools.register(defineTool({
+    name: 'get_dsh_stats',
+    description:
+      'Get live stats of the dshbase plugin directory: total plugins, verification status counts, and category distribution.',
+    parameters: {},
+    output: { schema: { type: 'string' }, render: (_a: any, v: string) => text(v) },
+    async execute() {
+      const total = plugins.length;
+      const verified = plugins.filter((p) => p.test === 'verified').length;
+      const pending = plugins.filter((p) => p.test === 'pending').length;
+      const broken = plugins.filter((p) => p.test === 'broken').length;
+      const npmCount = plugins.filter((p) => p.npm).length;
+      const catLines = CATEGORIES.map((c) => {
+        const n = plugins.filter((p) => p.category === c).length;
+        return `  ${c}: ${n}`;
+      }).join('\n');
+      return [
+        'dshbase plugin directory stats:',
+        `  Total: ${total}`,
+        `  ✅ Verified: ${verified}`,
+        `  ⏳ Pending: ${pending}`,
+        `  ❌ Broken: ${broken}`,
+        `  On npm: ${npmCount} · GitHub source: ${total - npmCount}`,
+        '',
+        'By category:',
+        catLines,
+      ].join('\n');
+    },
+  }));
+
+  // 5. 分类列表
+  ctx.tools.register(defineTool({
+    name: 'get_dsh_categories',
+    description:
+      'List the plugin categories in the dshbase directory with their plugin counts. Use this to discover what categories exist before listing plugins.',
+    parameters: {},
+    output: { schema: { type: 'string' }, render: (_a: any, v: string) => text(v) },
+    async execute() {
+      const lines = CATEGORIES.map((c) => {
+        const n = plugins.filter((p) => p.category === c).length;
+        return `${c}: ${n} plugins`;
+      });
+      return `dshbase categories:\n\n${lines.join('\n')}`;
     },
   }));
 }
