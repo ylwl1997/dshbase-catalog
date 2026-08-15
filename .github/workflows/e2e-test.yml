@@ -1,0 +1,31 @@
+name: E2E install test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dsh + pnpm
+        run: npm install -g @deepseek-ai/dsh pnpm
+
+      - name: Set up profile with catalog
+        run: |
+          export DSH_HOME=/tmp/dshhome
+          mkdir -p "$DSH_HOME"
+          printf 'DEEPSEEK_API_KEY: %s\n' "${{ secrets.DEEPSEEK_API_KEY }}" > "$DSH_HOME/.credentials.yaml"
+          dsh plugin --profile e2e add @deepseek-ai/dsh-base @deepseek-ai/dsh-headless dshbase-catalog
+          echo "--- profile bundles ---"
+          cat "$DSH_HOME/profiles/e2e/package.json"
+
+      - name: Run end-to-end install test
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          DSH_HOME: /tmp/dshhome
+        run: |
+          dsh --profile e2e "Use the search_dsh_plugins tool to find a memory plugin, use get_dsh_plugin to get its install command, then run that install command with your bash tool, and finally confirm whether the installation succeeded."
