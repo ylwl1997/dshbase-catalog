@@ -28,7 +28,7 @@ jobs:
             node-pty: true
             protobufjs: true
           EOF
-          dsh plugin --profile e2e add @deepseek-ai/dsh-base@0.1.0-rc.6 @deepseek-ai/dsh-headless@0.1.0-rc.6 dshbase-catalog@0.2.0
+          dsh plugin --profile e2e add @deepseek-ai/dsh-base@0.1.0-rc.6 @deepseek-ai/dsh-headless@0.1.0-rc.6 dshbase-catalog@latest
           echo "--- profile bundles ---"
           cat "$DSH_HOME/profiles/e2e/package.json"
 

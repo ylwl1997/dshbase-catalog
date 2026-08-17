@@ -12,6 +12,7 @@ interface Plugin {
   pkg: string;
   npm: boolean;
   test: string;
+  platform?: string;
   desc: string;
   desc_zh: string;
   stars: number;
@@ -20,10 +21,16 @@ interface Plugin {
 }
 
 const plugins: Plugin[] = (catalog as any).plugins || [];
-const CATEGORIES = ['UI Enhancements', 'Sessions & Messages', 'Tools & Capabilities', 'Workflow & Automation', 'Notifications & Integrations', 'Development & Runtime', 'Just for Fun'];
+// 分类从数据动态派生（不再硬编码），保证与网站 plugins.json 的 15 大分类一致
+const CATEGORIES = [...new Set(plugins.map((p) => p.category))].sort();
+const PF: Record<string, string> = { win32: '🪟 Windows', macos: '🍎 macOS', linux: '🐧 Linux' };
 
 function text(v: string) {
   return [{ type: 'text' as const, text: v }];
+}
+
+function pfTag(p: Plugin) {
+  return p.platform && p.platform !== 'any' ? ` · ${PF[p.platform] || p.platform}` : '';
 }
 
 // 按星数降序排好的副本
@@ -34,8 +41,9 @@ const byNew = [...plugins].sort((a, b) => (b.added || '').localeCompare(a.added 
 function fmtHit(p: Plugin, i?: number) {
   const idx = i !== undefined ? `${i + 1}. ` : '';
   const star = `★${p.stars || 0}`;
-  const status = p.test === 'verified' ? '已验证' : p.test === 'broken' ? '异常' : '待验证';
-  return `${idx}${p.name} [${status}] ${star}\n   ${p.desc}\n   Install: ${p.install}`;
+  // 两档：已验证 / 未验证（网站已从三档收敛，不再有 broken）
+  const status = p.test === 'verified' ? '已验证' : '未验证';
+  return `${idx}${p.name} [${status}]${pfTag(p)} ${star}\n   ${p.desc}\n   Install: ${p.install}`;
 }
 
 export function apply(ctx: Context) {
@@ -76,11 +84,12 @@ export function apply(ctx: Context) {
     async execute(args: any) {
       const p = plugins.find((x) => x.name === args.name);
       if (!p) return `Plugin "${args.name}" not found. Use search_dsh_plugins to find it.`;
-      const status = p.test === 'verified' ? '✅ 已验证 (verified)' : p.test === 'broken' ? '❌ 异常 (broken)' : '⏳ 待验证 (pending)';
+      const status = p.test === 'verified' ? '✅ 已验证 (verified)' : '⏳ 未验证 (pending)';
       const src = p.npm ? `npm (${p.pkg})` : 'GitHub source';
+      const pf = p.platform && p.platform !== 'any' ? (PF[p.platform] || p.platform) : 'any';
       return [
         `${p.name} (${p.category})`,
-        `Status: ${status} · ★${p.stars || 0} · ${src}`,
+        `Status: ${status} · ★${p.stars || 0} · ${src} · Platform: ${pf}`,
         '',
         p.desc,
         p.desc_zh ? `中文: ${p.desc_zh}` : '',
@@ -99,7 +108,7 @@ export function apply(ctx: Context) {
     description:
       'List DeepSeek Harness plugins from dshbase. Use sort="hot" for most-starred, sort="new" for recently added, or pass a category to list plugins in that category.',
     parameters: {
-      category: { type: 'string', description: 'Category name (e.g. "Tools & Capabilities"). Omit for all categories.' },
+      category: { type: 'string', description: 'Category name (e.g. "Developer"). Omit for all categories.' },
       sort: { type: 'string', description: 'Sort: "hot" (by stars, default) or "new" (recently added)' },
       limit: { type: 'string', description: 'Max results (default 20)' },
     },
@@ -129,8 +138,9 @@ export function apply(ctx: Context) {
       const total = plugins.length;
       const verified = plugins.filter((p) => p.test === 'verified').length;
       const pending = plugins.filter((p) => p.test === 'pending').length;
-      const broken = plugins.filter((p) => p.test === 'broken').length;
       const npmCount = plugins.filter((p) => p.npm).length;
+      const winCount = plugins.filter((p) => p.platform === 'win32').length;
+      const macCount = plugins.filter((p) => p.platform === 'macos').length;
       const catLines = CATEGORIES.map((c) => {
         const n = plugins.filter((p) => p.category === c).length;
         return `  ${c}: ${n}`;
@@ -140,8 +150,8 @@ export function apply(ctx: Context) {
         `  Total: ${total}`,
         `  ✅ Verified: ${verified}`,
         `  ⏳ Pending: ${pending}`,
-        `  ❌ Broken: ${broken}`,
         `  On npm: ${npmCount} · GitHub source: ${total - npmCount}`,
+        `  Platform-specific: ${winCount} Windows · ${macCount} macOS`,
         '',
         'By category:',
         catLines,
