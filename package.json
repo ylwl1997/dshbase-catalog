@@ -1,6 +1,6 @@
 {
   "name": "dshbase-catalog",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Query the dshbase plugin directory from inside DeepSeek Harness — search, list, and get install commands for 1700+ plugins.",
   "type": "module",
   "main": "dist/index.js",
@@ -15,7 +15,12 @@
     }
   },
   "license": "MIT",
-  "keywords": ["dsh-plugin", "deepseek-harness", "plugin-directory", "catalog"],
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "plugin-directory",
+    "catalog"
+  ],
   "dependencies": {
     "@deepseek-ai/cordis": "^4.0.1",
     "@deepseek-ai/dsh-tools": "^0.1.0-rc.6"
