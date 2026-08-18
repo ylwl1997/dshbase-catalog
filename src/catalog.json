@@ -1,7 +1,7 @@
 {
  "schema_version": 2,
- "updated": "2026-08-17",
- "count": 1773,
+ "updated": "2026-08-18",
+ "count": 1776,
  "plugins": [
   {
    "name": "OpenViking",
@@ -5352,6 +5352,20 @@
    "added": "2026-08-15"
   },
   {
+   "name": "dsh-checkpoint-rewind",
+   "category": "Developer",
+   "url": "https://github.com/PerryLink/dsh-checkpoint-rewind",
+   "pkg": "dsh-checkpoint-rewind",
+   "npm": true,
+   "test": "verified",
+   "platform": "any",
+   "desc": "Claude Code /rewind for DeepSeek Harness — git-first workspace snapshots before every mutation, turn-boundary session forks, one-shot /rewind restore. A dsh-plugin capability seam.",
+   "desc_zh": "Claude Code /rewind适配DSH：每次变更前git快照、边界会话分叉、一键/rewind恢复。dsh-plugin能力缝。",
+   "stars": 8,
+   "install": "dsh plugin add dsh-checkpoint-rewind",
+   "added": "2026-08-16"
+  },
+  {
    "name": "DSH-Think-zh",
    "category": "AI Models",
    "url": "https://github.com/Len7183/DSH-Think-zh",
@@ -6934,20 +6948,6 @@
    "added": "2026-08-16"
   },
   {
-   "name": "dsh-checkpoint-rewind",
-   "category": "Developer",
-   "url": "https://github.com/PerryLink/dsh-checkpoint-rewind",
-   "pkg": "",
-   "npm": false,
-   "test": "pending",
-   "platform": "any",
-   "desc": "Claude Code /rewind for DeepSeek Harness — git-first workspace snapshots before every mutation, turn-boundary session forks, one-shot /rewind restore. A dsh-plugin capability seam.",
-   "desc_zh": "Claude Code /rewind适配DSH：每次变更前git快照、边界会话分叉、一键/rewind恢复。dsh-plugin能力缝。",
-   "stars": 6,
-   "install": "dsh plugin add github:PerryLink/dsh-checkpoint-rewind",
-   "added": "2026-08-16"
-  },
-  {
    "name": "dsh-deepread",
    "category": "Developer",
    "url": "https://github.com/xiehuan123/dsh-deepread",
@@ -7030,6 +7030,20 @@
    "stars": 6,
    "install": "dsh plugin add github:STARDUSTLC666/dsh-codex-port",
    "added": "2026-08-16"
+  },
+  {
+   "name": "dsh-movein",
+   "category": "Developer",
+   "url": "https://github.com/sjh9714/dsh-movein",
+   "pkg": "dsh-movein",
+   "npm": true,
+   "test": "verified",
+   "platform": "any",
+   "desc": "Migrate your whole Claude Code or Codex setup into DeepSeek Harness (DSH) with one command — skills, slash commands, MCP servers, hooks, subagents, permission rules, with dry-run preview, auto-backup and one-click rollback.",
+   "desc_zh": "一键迁移整套 Claude Code/Codex 配置到 DSH（技能、斜杠命令、MCP、hooks、子代理、权限规则），默认 dry run 出「搬家清单」预演、写入前自动备份、一键回滚。",
+   "stars": 6,
+   "install": "dsh plugin add dsh-movein",
+   "added": "2026-08-18"
   },
   {
    "name": "xiaoliuren-skill",
@@ -16608,6 +16622,20 @@
    "added": "2026-08-16"
   },
   {
+   "name": "dsh-sandbox-tester",
+   "category": "Developer",
+   "url": "https://github.com/Sutera-Diffusus/dsh-sandbox-tester",
+   "pkg": "",
+   "npm": false,
+   "test": "pending",
+   "platform": "any",
+   "desc": "Process-isolated sandbox tester for DeepSeek Harness — install and smoke-test your plugin in a standalone DSH_HOME/program copy/port before release, with syntax + bundle gates.",
+   "desc_zh": "DSH 沙盒测试器：在独立 DSH_HOME/程序副本/端口里装一遍自己的插件做冒烟测试，坏版本在沙盒里先炸、本体无损；发布前还有语法+bundle 门禁。",
+   "stars": 2,
+   "install": "dsh plugin add github:Sutera-Diffusus/dsh-sandbox-tester",
+   "added": "2026-08-18"
+  },
+  {
    "name": "deepseek-harness-huggingface",
    "category": "AI Models",
    "url": "https://github.com/emredeveloper/deepseek-harness-huggingface",
@@ -17963,6 +17991,20 @@
    "desc_zh": "沙箱策略一致性静态审计",
    "stars": 2,
    "install": "dsh plugin add github:zoahdev/dsh-sandbox-audit",
+   "added": "2026-08-16"
+  },
+  {
+   "name": "dsh-skill-pack-security",
+   "category": "Security",
+   "url": "https://github.com/PerryLink/dsh-skill-pack-security",
+   "pkg": "@perrylink/dsh-skill-pack-security-provider",
+   "npm": true,
+   "test": "verified",
+   "platform": "any",
+   "desc": "Security-audit skill pack + plugin_vet supply-chain gate for DeepSeek Harness (dsh): 8 bilingual agent skills (secret scan, dependency audit, supply-chain review, prompt-injection review, threat modeling, vuln intel, incident response) plus the plugin_vet automated pre-install scanner.",
+   "desc_zh": "安全审计技能包 + plugin_vet 供应链门禁：8 项双语技能（密钥扫描、依赖审计、供应链审查、提示注入审查、威胁建模、漏洞情报、事件响应）+ 装前自动扫描器。",
+   "stars": 2,
+   "install": "dsh plugin add @perrylink/dsh-skill-pack-security-provider",
    "added": "2026-08-16"
   },
   {
@@ -23146,20 +23188,6 @@
    "added": "2026-08-16"
   },
   {
-   "name": "dsh-skill-pack-security",
-   "category": "Security",
-   "url": "https://github.com/PerryLink/dsh-skill-pack-security",
-   "pkg": "",
-   "npm": false,
-   "test": "pending",
-   "platform": "any",
-   "desc": "Security-audit skill pack for DeepSeek Harness (dsh): 5 agent skills - secret scan, dependency audit, supply-chain review, prompt-injection review, audit orchestration. Zero runtime code. Apache-2.0.",
-   "desc_zh": "安全审计技能包：5项技能，零运行时代码",
-   "stars": 1,
-   "install": "dsh plugin add github:PerryLink/dsh-skill-pack-security",
-   "added": "2026-08-16"
-  },
-  {
    "name": "dsh-report-studio",
    "category": "Productivity",
    "url": "https://github.com/ciceroyang/dsh-report-studio",
@@ -24446,6 +24474,20 @@
    "stars": 0,
    "install": "dsh plugin add github:darven-cs/deepseek-harness-desktop-linux",
    "added": "2026-08-16"
+  },
+  {
+   "name": "dsh-pet-codex",
+   "category": "Desktop",
+   "url": "https://github.com/zhengendong/dsh-pet-codex",
+   "pkg": "",
+   "npm": false,
+   "test": "pending",
+   "platform": "any",
+   "desc": "Desktop pet for DSH — multi-source discovery (built-in / DSH user dir / Codex CLI) plus sync from Codex; a transparent floating Electron pet window animated by session state.",
+   "desc_zh": "DSH 桌宠：多源发现（内置 / DSH 用户目录 / Codex CLI）+ 从 Codex 同步，透明悬浮 Electron 宠物窗口随会话状态动画。",
+   "stars": 0,
+   "install": "dsh plugin add github:zhengendong/dsh-pet-codex",
+   "added": "2026-08-18"
   },
   {
    "name": "dsh-plugin-dated-folders",
