@@ -30914,10 +30914,10 @@
  "packs": [
   {
    "id": "dev-workbench",
-   "title_en": "Dev workbench",
-   "title_zh": "开发工作台",
-   "desc_en": "Usage visibility, a solid TUI, LSP actions, and Git graph — all L3-verified.",
-   "desc_zh": "用量可见、可靠 TUI、LSP 动作与 Git 图——全部 L3 已验证。",
+   "title_en": "Developer workbench",
+   "title_zh": "程序员工作台",
+   "desc_en": "A verified DeepSeek Harness plugin pack for developers: token usage, Claude Code-style TUI, LSP actions, Git graph, better sidebar, and @file mentions — every slot install-tested on dshbase.",
+   "desc_zh": "面向程序员的 DeepSeek Harness 已验证插件包：Token 用量、类 Claude Code 的 TUI、LSP 动作、Git 图、更好侧边栏与 @file 提及——每个槽位都在 dshbase 实测通过。",
    "slots": [
     {
      "id": "tokenUsage",
@@ -30954,6 +30954,303 @@
      "slug": "dsh-git-graph",
      "install": "dsh plugin add github:1841220388zzzcccxxx-star/dsh-git-graph",
      "test": "verified"
+    },
+    {
+     "id": "sidebar",
+     "label_en": "Better sidebar",
+     "label_zh": "更好侧边栏",
+     "name": "DSH-better-sidebar",
+     "slug": "DSH-better-sidebar",
+     "install": "dsh plugin add github:omdsh-dev/DSH-better-sidebar",
+     "test": "verified"
+    },
+    {
+     "id": "atfile",
+     "label_en": "@file mentions",
+     "label_zh": "@file 提及",
+     "name": "dsh-at-file",
+     "slug": "dsh-at-file",
+     "install": "dsh plugin add github:omdsh-dev/dsh-at-file",
+     "test": "verified"
+    }
+   ]
+  },
+  {
+   "id": "artist-creative",
+   "title_en": "Artist & creative vision",
+   "title_zh": "艺术家 / 创意视觉包",
+   "desc_en": "Give text-only DeepSeek Harness models eyes and a design surface: vision bridge, vision toolkit, OpenPencil design preview, and GenUI interactive charts — verified-only scene pack.",
+   "desc_zh": "给纯文本 DeepSeek Harness 模型加「眼睛」和设计画布：视觉桥、vision toolkit、OpenPencil 预览与 GenUI 交互图表——仅含已验证插件的场景包。",
+   "slots": [
+    {
+     "id": "modlens",
+     "label_en": "Vision bridge",
+     "label_zh": "视觉桥",
+     "name": "modlens",
+     "slug": "modlens",
+     "install": "dsh plugin add github:liustack/modlens",
+     "test": "verified"
+    },
+    {
+     "id": "toolkit",
+     "label_en": "Vision toolkit",
+     "label_zh": "视觉工具箱",
+     "name": "dsh-vision-toolkit",
+     "slug": "dsh-vision-toolkit",
+     "install": "dsh plugin add github:Anionex/dsh-vision-toolkit",
+     "test": "verified"
+    },
+    {
+     "id": "pencil",
+     "label_en": "OpenPencil design",
+     "label_zh": "OpenPencil 设计",
+     "name": "dsh-openpencil",
+     "slug": "dsh-openpencil",
+     "install": "dsh plugin add github:ZSeven-W/dsh-openpencil",
+     "test": "verified"
+    },
+    {
+     "id": "genui",
+     "label_en": "GenUI charts",
+     "label_zh": "GenUI 图表",
+     "name": "dsh-genui",
+     "slug": "dsh-genui",
+     "install": "dsh plugin add github:omdsh-dev/dsh-genui",
+     "test": "verified"
+    }
+   ]
+  },
+  {
+   "id": "accountant-finance",
+   "title_en": "Accountant & finance ops",
+   "title_zh": "会计 / 财务运营包",
+   "desc_en": "Office docs, Excel chat, finance workflows, and AnyDoc conversion for accountants running DeepSeek Harness — spreadsheet and PDF slots verified on dshbase.",
+   "desc_zh": "面向会计与财务运营的 DeepSeek Harness 场景包：办公文档、Excel 对话、财务流程与 AnyDoc 转换——表格与 PDF 相关槽位均已验证。",
+   "slots": [
+    {
+     "id": "office",
+     "label_en": "Office docs",
+     "label_zh": "办公文档",
+     "name": "dsh-office",
+     "slug": "dsh-office",
+     "install": "dsh plugin add github:omdsh-dev/dsh-office",
+     "test": "verified"
+    },
+    {
+     "id": "excel",
+     "label_en": "Excel chat",
+     "label_zh": "Excel 对话",
+     "name": "dsh-excel-chat",
+     "slug": "dsh-excel-chat",
+     "install": "dsh plugin add dsh-excel-chat",
+     "test": "verified"
+    },
+    {
+     "id": "finance",
+     "label_en": "Finance workflows",
+     "label_zh": "财务流程",
+     "name": "dsh-finance",
+     "slug": "dsh-finance",
+     "install": "dsh plugin add github:zhang787jun/dsh-finance",
+     "test": "verified"
+    },
+    {
+     "id": "anydoc",
+     "label_en": "AnyDoc convert",
+     "label_zh": "AnyDoc 转换",
+     "name": "dsh-plugin-anydoc",
+     "slug": "dsh-plugin-anydoc",
+     "install": "dsh plugin add github:beancookie/dsh-plugin-anydoc",
+     "test": "verified"
+    }
+   ]
+  },
+  {
+   "id": "student",
+   "title_en": "Student study kit",
+   "title_zh": "学生学习包",
+   "desc_en": "Local-first explanations, mind maps from courseware, DeepTutor learning threads, bookmarks, and durable memory — a verified DSH plugin pack for students.",
+   "desc_zh": "本地优先讲解、课件转脑图、DeepTutor 学习线程、书签与长期记忆——面向学生的 DeepSeek Harness 已验证插件包。",
+   "slots": [
+    {
+     "id": "explain",
+     "label_en": "Explain & learn",
+     "label_zh": "讲解学习",
+     "name": "dsh-explain",
+     "slug": "dsh-explain",
+     "install": "dsh plugin add github:yuezengwu/dsh-explain",
+     "test": "verified"
+    },
+    {
+     "id": "mindmap",
+     "label_en": "Mind maps",
+     "label_zh": "思维导图",
+     "name": "dsh-mindmap",
+     "slug": "dsh-mindmap",
+     "install": "dsh plugin add github:chenw2759-wq/dsh-mindmap",
+     "test": "verified"
+    },
+    {
+     "id": "tutor",
+     "label_en": "DeepTutor",
+     "label_zh": "DeepTutor",
+     "name": "dsh-deeptutor",
+     "slug": "dsh-deeptutor",
+     "install": "dsh plugin add dsh-deeptutor",
+     "test": "verified"
+    },
+    {
+     "id": "bookmarks",
+     "label_en": "Bookmarks",
+     "label_zh": "书签",
+     "name": "dsh-bookmarks",
+     "slug": "dsh-bookmarks",
+     "install": "dsh plugin add dsh-bookmarks",
+     "test": "verified"
+    },
+    {
+     "id": "memory",
+     "label_en": "Core memory",
+     "label_zh": "核心记忆",
+     "name": "dsh-memory",
+     "slug": "dsh-memory",
+     "install": "dsh plugin add dsh-memory",
+     "test": "verified"
+    }
+   ]
+  },
+  {
+   "id": "teacher",
+   "title_en": "Teacher & educator kit",
+   "title_zh": "老师 / 教育者包",
+   "desc_en": "Classrooms and Socratic teaching with OpenMAIC, courseware mind maps, GenUI quizzes/charts, and DeepTutor bridges — verified DeepSeek Harness plugins for educators.",
+   "desc_zh": "OpenMAIC 课堂与苏格拉底式教学、课件脑图、GenUI 测验/图表、DeepTutor 桥接——面向老师的已验证 DeepSeek Harness 插件包。",
+   "slots": [
+    {
+     "id": "openmaic",
+     "label_en": "OpenMAIC classroom",
+     "label_zh": "OpenMAIC 课堂",
+     "name": "dsh-openmaic",
+     "slug": "dsh-openmaic",
+     "install": "dsh plugin add github:THU-MAIC/dsh-openmaic",
+     "test": "verified"
+    },
+    {
+     "id": "mindmap",
+     "label_en": "Courseware maps",
+     "label_zh": "课件脑图",
+     "name": "dsh-mindmap",
+     "slug": "dsh-mindmap",
+     "install": "dsh plugin add github:chenw2759-wq/dsh-mindmap",
+     "test": "verified"
+    },
+    {
+     "id": "genui",
+     "label_en": "Quizzes & charts",
+     "label_zh": "测验与图表",
+     "name": "dsh-genui",
+     "slug": "dsh-genui",
+     "install": "dsh plugin add github:omdsh-dev/dsh-genui",
+     "test": "verified"
+    },
+    {
+     "id": "tutor",
+     "label_en": "DeepTutor",
+     "label_zh": "DeepTutor",
+     "name": "dsh-deeptutor",
+     "slug": "dsh-deeptutor",
+     "install": "dsh plugin add dsh-deeptutor",
+     "test": "verified"
+    }
+   ]
+  },
+  {
+   "id": "writer",
+   "title_en": "Writer & long-form kit",
+   "title_zh": "写作者 / 长文包",
+   "desc_en": "Long-form writing engine, academic writing guard, Markdown preview, and better streaming Markdown for writers using DeepSeek Harness — verified slots only.",
+   "desc_zh": "长文写作引擎、学术写作卫士、Markdown 预览与更好的流式 Markdown——面向写作者的 DeepSeek Harness 已验证场景包。",
+   "slots": [
+    {
+     "id": "writing",
+     "label_en": "Writing engine",
+     "label_zh": "写作引擎",
+     "name": "dsh-tool-writing",
+     "slug": "dsh-tool-writing",
+     "install": "dsh plugin add github:x2802490130-prog/dsh-tool-writing",
+     "test": "verified"
+    },
+    {
+     "id": "guard",
+     "label_en": "Writing guard",
+     "label_zh": "写作卫士",
+     "name": "dsh-plugin-writing-guard",
+     "slug": "dsh-plugin-writing-guard",
+     "install": "dsh plugin add github:xmutfyh/dsh-plugin-writing-guard",
+     "test": "verified"
+    },
+    {
+     "id": "mdpreview",
+     "label_en": "MD preview",
+     "label_zh": "MD 预览",
+     "name": "dsh-md-preview",
+     "slug": "dsh-md-preview",
+     "install": "dsh plugin add github:LeslieWylie/dsh-md-preview",
+     "test": "verified"
+    },
+    {
+     "id": "bettermd",
+     "label_en": "Better Markdown",
+     "label_zh": "更好 Markdown",
+     "name": "dsh-better-markdown",
+     "slug": "dsh-better-markdown",
+     "install": "dsh plugin add github:zerob13/dsh-better-markdown",
+     "test": "verified"
+    }
+   ]
+  },
+  {
+   "id": "researcher",
+   "title_en": "Researcher literature kit",
+   "title_zh": "研究者 / 文献包",
+   "desc_en": "arXiv/OpenAlex scholar search, local Zotero cite, web search, and clean URL reading — a verified DeepSeek Harness pack for researchers.",
+   "desc_zh": "arXiv/OpenAlex 学术检索、本地 Zotero 引用、网页搜索与干净 URL 阅读——面向研究者的已验证 DeepSeek Harness 场景包。",
+   "slots": [
+    {
+     "id": "scholar",
+     "label_en": "Scholar search",
+     "label_zh": "学术检索",
+     "name": "dsh-scholar",
+     "slug": "dsh-scholar",
+     "install": "dsh plugin add dsh-scholar",
+     "test": "verified"
+    },
+    {
+     "id": "zotero",
+     "label_en": "Zotero library",
+     "label_zh": "Zotero 文库",
+     "name": "dsh-zotero",
+     "slug": "dsh-zotero",
+     "install": "dsh plugin add github:Vncntvx/dsh-zotero",
+     "test": "verified"
+    },
+    {
+     "id": "search",
+     "label_en": "Web search",
+     "label_zh": "网页搜索",
+     "name": "modsearch",
+     "slug": "modsearch",
+     "install": "dsh plugin add modsearch",
+     "test": "verified"
+    },
+    {
+     "id": "readurl",
+     "label_en": "Read URL",
+     "label_zh": "阅读链接",
+     "name": "dsh-read-url",
+     "slug": "dsh-read-url",
+     "install": "dsh plugin add github:2672243194/dsh-read-url",
+     "test": "verified"
     }
    ]
   },
@@ -30961,8 +31258,8 @@
    "id": "vision",
    "title_en": "Vision for text-only models",
    "title_zh": "纯文本模型视觉外挂",
-   "desc_en": "Paste images, OCR, and route vision tools — verified on dsh 0.1.0-rc.6.",
-   "desc_zh": "贴图、OCR、视觉路由——均在 dsh 0.1.0-rc.6 实测通过。",
+   "desc_en": "Paste images, run OCR, and route vision tools when your DeepSeek model is text-only — dsh vision toolkit and friends, all L3/L4 verified.",
+   "desc_zh": "模型是纯文本时也能贴图、OCR、路由视觉工具——含 dsh vision toolkit 等，全部 L3/L4 已验证。",
    "slots": [
     {
      "id": "modlens",
@@ -30997,8 +31294,8 @@
    "id": "memory",
    "title_en": "Long-term memory",
    "title_zh": "长期记忆",
-   "desc_en": "Cross-session memory plugins that passed our install tests.",
-   "desc_zh": "跨会话记忆插件——仅收录 L3 已验证条目。",
+   "desc_en": "Cross-session memory plugins that passed our install tests — evolve, Mnemon, and core memory for DeepSeek Harness agents.",
+   "desc_zh": "跨会话记忆插件——记忆进化、Mnemon 与核心记忆，仅收录通过安装实测的条目。",
    "slots": [
     {
      "id": "evolve",
@@ -31033,8 +31330,8 @@
    "id": "im",
    "title_en": "IM bridges",
    "title_zh": "IM 接入",
-   "desc_en": "Reach Feishu, WeChat, Telegram, and DingTalk — verified installs only.",
-   "desc_zh": "飞书、微信、Telegram、钉钉——只收已验证安装。",
+   "desc_en": "Reach Feishu, WeChat, Telegram, and DingTalk from DeepSeek Harness — verified IM integration plugins only.",
+   "desc_zh": "把 DeepSeek Harness 接到飞书、微信、Telegram、钉钉——只收已验证的 IM 接入插件。",
    "slots": [
     {
      "id": "feishu",
@@ -31078,8 +31375,8 @@
    "id": "security",
    "title_en": "Security & audit",
    "title_zh": "安全与审计",
-   "desc_en": "Local audits and scan packs that we actually ran.",
-   "desc_zh": "本地审计与扫描包——我们真跑过。",
+   "desc_en": "Local security audits and scan packs we actually ran — pair with the dshbase audit methodology page.",
+   "desc_zh": "本地安全审计与扫描包——我们真跑过；可配合 dshbase 审计方法页一起看。",
    "slots": [
     {
      "id": "audit",
@@ -31112,10 +31409,10 @@
   },
   {
    "id": "ui-polish",
-   "title_en": "UI polish",
-   "title_zh": "界面美化",
-   "desc_en": "Sidebar foundation plus catalog discovery inside DSH.",
-   "desc_zh": "侧边栏底座 + 站内目录发现。",
+   "title_en": "UI polish & discovery",
+   "title_zh": "界面美化与发现",
+   "desc_en": "dsh better sidebar, in-agent catalog discovery, and a featured TUI — the UI plugins people search for, verified on dshbase.",
+   "desc_zh": "dsh better sidebar、站内目录发现与精选 TUI——别人常搜的 UI 插件，已在 dshbase 验证。",
    "slots": [
     {
      "id": "sidebar",
@@ -31133,6 +31430,15 @@
      "name": "dshbase-catalog",
      "slug": "dshbase-catalog",
      "install": "dsh plugin add dshbase-catalog",
+     "test": "verified"
+    },
+    {
+     "id": "find",
+     "label_en": "Find plugin",
+     "label_zh": "查找插件",
+     "name": "dsh-find-plugin",
+     "slug": "dsh-find-plugin",
+     "install": "dsh plugin add dsh-find-plugin",
      "test": "verified"
     },
     {
