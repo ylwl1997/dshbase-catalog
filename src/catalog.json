@@ -1,7 +1,7 @@
 {
  "schema_version": 3,
  "updated": "2026-08-20",
- "count": 1818,
+ "count": 1819,
  "verified_definition": "L1 install + L2 load + L3 runtime Q&A on dsh 0.1.0-rc.6 (not topic count / manifest-only installability)",
  "plugins": [
   {
@@ -29753,6 +29753,23 @@
    "stars": 0,
    "install": "dsh plugin add dsh-runtime-nutrition-label",
    "added": "2026-08-20T09:12:51"
+  },
+  {
+   "name": "@wanghailong0419/dsh-toolkit",
+   "slug": "wanghailong0419-dsh-toolkit",
+   "category": "Developer",
+   "url": "https://github.com/LongSir0419/dsh-toolkit",
+   "pkg": "@wanghailong0419/dsh-toolkit",
+   "npm": true,
+   "test": "pending",
+   "note": "",
+   "testDate": "",
+   "platform": "any",
+   "desc": "DSH toolkit that installs MCP manager and Skill manager in one command; Settings then shows MCP and Skill sections.",
+   "desc_zh": "DeepSeek Harness (DSH) 插件工具包——一条命令安装两个常用插件：mcp管理 与 Skill管理。装完即用，设置页自动出现 mcp管理 与 Skill管理 两个分区。",
+   "stars": 0,
+   "install": "dsh plugin add @wanghailong0419/dsh-toolkit",
+   "added": "2026-08-20T09:02:04"
   },
   {
    "name": "dsh-IamDeepSeekV4ga",
