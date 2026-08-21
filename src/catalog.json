@@ -30833,7 +30833,7 @@
    "pkg": "@wanghailong0419/dsh-toolkit",
    "npm": true,
    "test": "verified",
-   "note": "Scoped catalog name to distinguish from omdsh-dev/dsh-toolkit. Headless L3 PASS on dsh 0.1.0-rc.6 (install + load + Q&A) for pinned npm @wanghailong0419/dsh-toolkit@0.1.5 on 2026-08-21. Profile package.json recorded 0.1.5. Follow-up from issues #56/#57 (npm latest 0.1.5; forwards member client apply+inject so Settings sections render; README screenshots cached).",
+   "note": "Scoped catalog name to distinguish from omdsh-dev/dsh-toolkit. Headless L3 PASS on dsh 0.1.0-rc.6, re-confirmed on dsh 0.1.0-rc.8 (install + load + Q&A) for pinned npm @wanghailong0419/dsh-toolkit@0.1.6 on 2026-08-21. Profile package.json recorded 0.1.6. Follow-up from issues #56/#57 (npm latest 0.1.6; docs/badge bump on 0.1.5 loader+client inject; README screenshots cached).",
    "testDate": "2026-08-21",
    "platform": "any",
    "desc": "DSH toolkit that installs MCP manager and Skill manager in one command; Settings then shows MCP and Skill sections.",
