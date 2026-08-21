@@ -1,7 +1,7 @@
 {
  "schema_version": 3,
  "updated": "2026-08-21",
- "count": 1887,
+ "count": 1888,
  "verified_definition": "L1 install + L2 load + L3 runtime Q&A on dsh 0.1.0-rc.8 (not topic count / manifest-only installability)",
  "plugins": [
   {
@@ -20488,6 +20488,23 @@
    "stars": 3,
    "install": "dsh plugin add github:lucky8197/dsh-devquest",
    "added": "2026-08-16"
+  },
+  {
+   "name": "dsh-codex-sync",
+   "slug": "dsh-codex-sync",
+   "category": "Productivity",
+   "url": "https://github.com/Walvez/dsh-codex-sync",
+   "pkg": "dsh-codex-sync",
+   "npm": true,
+   "test": "pending",
+   "note": "",
+   "testDate": "",
+   "platform": "any",
+   "desc": "One-tap Codex move-in to DSH: auto-import project chats, two-way Skills & MCP sync.",
+   "desc_zh": "Codex一键搬家到DSH：Codex项目对话自动导入DSH，Skills、MCP双向同步。",
+   "stars": 3,
+   "install": "dsh plugin add dsh-codex-sync",
+   "added": "2026-08-21T12:17:20"
   },
   {
    "name": "OpenFlowFrames",
