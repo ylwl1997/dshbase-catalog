@@ -1,7 +1,7 @@
 {
  "schema_version": 3,
- "updated": "2026-08-20",
- "count": 1882,
+ "updated": "2026-08-21",
+ "count": 1883,
  "verified_definition": "L1 install + L2 load + L3 runtime Q&A on dsh 0.1.0-rc.6 (not topic count / manifest-only installability)",
  "plugins": [
   {
@@ -30977,6 +30977,23 @@
    "stars": 0,
    "install": "dsh plugin add github:findshan/dsh-agent-memory",
    "added": "2026-08-16"
+  },
+  {
+   "name": "dsh-llm-qianfan",
+   "slug": "dsh-llm-qianfan",
+   "category": "AI Models",
+   "url": "https://github.com/hyt-ao/dsh-llm-qianfan",
+   "pkg": "",
+   "npm": false,
+   "test": "pending",
+   "note": "仓库未加 `dsh-plugin` topic。验证: runtime-fail on dsh 0.1.0-rc.6 with github:hyt-ao/dsh-llm-qianfan (pnpm recorded dsh-llm-qianfan 0.1.0; profile package.json is the git source). L1 install OK. Plugin tree failed to load: SyntaxError Unexpected identifier 'watchdog' when importing loader entry llm-qianfan — compiled lib/index.js uses ESM `using watchdog = idleWatchdog(...)` (explicit resource management), which Node v22.23.2 on the verify host cannot parse.",
+   "testDate": "2026-08-21",
+   "platform": "any",
+   "desc": "Baidu Qianfan LLM adapter for DeepSeek Harness: Chat Completions, streaming, tool calling, and thinking mode.",
+   "desc_zh": "百度千帆大模型适配器：对接 Chat Completions，支持流式输出、工具调用与思考模式。",
+   "stars": 0,
+   "install": "dsh plugin add github:hyt-ao/dsh-llm-qianfan",
+   "added": "2026-08-21T01:31:47"
   },
   {
    "name": "dsh-web-text-drop",
