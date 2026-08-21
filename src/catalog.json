@@ -1,7 +1,7 @@
 {
  "schema_version": 3,
  "updated": "2026-08-21",
- "count": 1884,
+ "count": 1885,
  "verified_definition": "L1 install + L2 load + L3 runtime Q&A on dsh 0.1.0-rc.8 (not topic count / manifest-only installability)",
  "plugins": [
   {
@@ -28614,6 +28614,23 @@
    "stars": 1,
    "install": "dsh plugin add github:PolinniZhong/dsh-personal-center",
    "added": "2026-08-20T09:46:39"
+  },
+  {
+   "name": "dsh-web-app-launcher",
+   "slug": "dsh-web-app-launcher",
+   "category": "Desktop",
+   "url": "https://github.com/sylkmpo/dsh-web-app-launcher",
+   "pkg": "",
+   "npm": false,
+   "test": "pending",
+   "note": "Git-only; in-repo package.json version 0.1.2 (not on npm). Windows-only (win32). Headless L3 runtime-fail on dsh 0.1.0-rc.8 (2026-08-21): L1 install OK; profile package.json records git source github:sylkmpo/dsh-web-app-launcher; pnpm resolved 0.1.2; dsh.bundle.patch present. Patch warning: entry web-startup not found on headless profile. Q&A failed because desktop-launcher-startup commander rejected extra args (Expected 0 arguments but got 1). Not L4'd: L3 was runtime-fail, not web-only.",
+   "testDate": "",
+   "platform": "win32",
+   "desc": "Windows plugin that runs dsh web like a desktop app: native Web UI in an Edge/Chrome/Brave/Vivaldi frameless --app window, auto-creates a desktop shortcut, closing the window exits Harness.",
+   "desc_zh": "让 dsh web 像普通桌面软件一样运行的 Windows 插件——本质是原生 Web（无 Electron、无二次打包、无 fork），首次运行自动创建桌面快捷方式，双击即以 Edge/Chrome/Brave/Vivaldi 的无边框应用窗口打开 Web UI，关闭窗口即退出 Harness。",
+   "stars": 1,
+   "install": "dsh plugin add github:sylkmpo/dsh-web-app-launcher",
+   "added": "2026-08-21T04:32:19"
   },
   {
    "name": "dsh-routines",
