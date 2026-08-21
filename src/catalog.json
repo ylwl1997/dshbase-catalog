@@ -1,7 +1,7 @@
 {
  "schema_version": 3,
  "updated": "2026-08-21",
- "count": 1888,
+ "count": 1889,
  "verified_definition": "L1 install + L2 load + L3 runtime Q&A on dsh 0.1.0-rc.8 (not topic count / manifest-only installability)",
  "plugins": [
   {
@@ -28376,6 +28376,23 @@
    "stars": 1,
    "install": "dsh plugin add github:detpecca/DSH-Wiki",
    "added": "2026-08-16"
+  },
+  {
+   "name": "dsh-session-kb",
+   "slug": "dsh-session-kb",
+   "category": "Knowledge",
+   "url": "https://github.com/PolinniZhong/dsh-session-kb",
+   "pkg": "dsh-session-kb",
+   "npm": true,
+   "test": "pending",
+   "note": "",
+   "testDate": "",
+   "platform": "any",
+   "desc": "Session KB for DeepSeek Harness: full-text search across all past sessions and recall them as @references.",
+   "desc_zh": "会话库：历史会话全文搜索与一键召回。",
+   "stars": 1,
+   "install": "dsh plugin add dsh-session-kb",
+   "added": "2026-08-21T12:19:54"
   },
   {
    "name": "dsh-desktop-window",
