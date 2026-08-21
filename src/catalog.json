@@ -1,7 +1,7 @@
 {
  "schema_version": 3,
  "updated": "2026-08-21",
- "count": 1883,
+ "count": 1884,
  "verified_definition": "L1 install + L2 load + L3 runtime Q&A on dsh 0.1.0-rc.8 (not topic count / manifest-only installability)",
  "plugins": [
   {
@@ -31215,6 +31215,23 @@
    "stars": 0,
    "install": "dsh plugin add github:hyizhou/dsh-spark-input",
    "added": "2026-08-16"
+  },
+  {
+   "name": "@luckvd/dsh-btw",
+   "slug": "luckvd-dsh-btw",
+   "category": "UI & Skins",
+   "url": "https://github.com/LuckVd/dsh-btw",
+   "pkg": "",
+   "npm": false,
+   "test": "verified",
+   "note": "Scoped catalog name to distinguish from iyllyt/dsh-btw. Git-only; in-repo package name dsh-btw 0.2.0 (not on npm). Headless L3 PASS on dsh 0.1.0-rc.8 (install + load + Q&A) for github:LuckVd/dsh-btw on 2026-08-21. Profile package.json records git source as dsh-btw; pnpm resolved 0.2.0. dsh CLI warned the package declares no dsh.bundle so it installed as a plain dependency (not a profile layer); cordis.patch.yml is in the repo. Web GUI side-ask UI was not exercised by headless L3.",
+   "testDate": "2026-08-21",
+   "platform": "any",
+   "desc": "BTW side-ask panel for the DSH web GUI: per-answer ? button opens an independent side session that does not write to the main conversation.",
+   "desc_zh": "DSH web 纯客户端侧问插件：在已完成回答后加 ? 按钮，独立隐藏侧问会话追问，不写入主会话。",
+   "stars": 0,
+   "install": "dsh plugin add github:LuckVd/dsh-btw",
+   "added": "2026-08-21T03:17:09"
   },
   {
    "name": "dsh-skill-evolve",
