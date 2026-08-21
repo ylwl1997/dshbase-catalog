@@ -1,7 +1,7 @@
 {
  "schema_version": 3,
  "updated": "2026-08-21",
- "count": 1886,
+ "count": 1887,
  "verified_definition": "L1 install + L2 load + L3 runtime Q&A on dsh 0.1.0-rc.8 (not topic count / manifest-only installability)",
  "plugins": [
   {
@@ -32065,6 +32065,23 @@
    "stars": 0,
    "install": "dsh plugin add github:mindcarver/dsh-codex-canvas",
    "added": "2026-08-16"
+  },
+  {
+   "name": "agentduel-dsh",
+   "slug": "agentduel-dsh",
+   "category": "Content",
+   "url": "https://github.com/linconz/agentduel-dsh",
+   "pkg": "@agentduel/agentduel-dsh",
+   "npm": true,
+   "test": "pending",
+   "note": "",
+   "testDate": "",
+   "platform": "any",
+   "desc": "Code your agent, watch it fight, tweak and rematch — all inside DeepSeek Harness.",
+   "desc_zh": "AgentDuel 是一款代码对战游戏。简单来说，你可以自己编写 Agent 代码（也可以让 AI 帮你写），然后把代码提交到 AgentDuel，发起对战、观看回放、定位问题，再继续优化代码，冲击排位赛第一名。",
+   "stars": 0,
+   "install": "dsh plugin add @agentduel/agentduel-dsh",
+   "added": "2026-08-21T08:34:49"
   }
  ],
  "packs": [
