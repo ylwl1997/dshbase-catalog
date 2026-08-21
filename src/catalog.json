@@ -2,7 +2,7 @@
  "schema_version": 3,
  "updated": "2026-08-21",
  "count": 1883,
- "verified_definition": "L1 install + L2 load + L3 runtime Q&A on dsh 0.1.0-rc.6 (not topic count / manifest-only installability)",
+ "verified_definition": "L1 install + L2 load + L3 runtime Q&A on dsh 0.1.0-rc.8 (not topic count / manifest-only installability)",
  "plugins": [
   {
    "name": "OpenViking",
@@ -30833,7 +30833,7 @@
    "pkg": "@wanghailong0419/dsh-toolkit",
    "npm": true,
    "test": "verified",
-   "note": "Scoped catalog name to distinguish from omdsh-dev/dsh-toolkit. Headless L3 PASS on dsh 0.1.0-rc.6 (install + load + Q&A) for pinned npm @wanghailong0419/dsh-toolkit@0.1.6 on 2026-08-21. Profile package.json recorded 0.1.6. Follow-up from issues #56/#57 (npm latest 0.1.6; docs/badge bump on 0.1.5 loader+client inject; README screenshots cached).",
+   "note": "Scoped catalog name to distinguish from omdsh-dev/dsh-toolkit. Headless L3 PASS on dsh 0.1.0-rc.6 (install + load + Q&A) for pinned npm @wanghailong0419/dsh-toolkit@0.1.5 on 2026-08-21. Profile package.json recorded 0.1.5. Follow-up from issues #56/#57 (npm latest 0.1.5; forwards member client apply+inject so Settings sections render; README screenshots cached).",
    "testDate": "2026-08-21",
    "platform": "any",
    "desc": "DSH toolkit that installs MCP manager and Skill manager in one command; Settings then shows MCP and Skill sections.",
@@ -30985,8 +30985,8 @@
    "url": "https://github.com/hyt-ao/dsh-llm-qianfan",
    "pkg": "",
    "npm": false,
-   "test": "pending",
-   "note": "仓库未加 `dsh-plugin` topic。验证: runtime-fail on dsh 0.1.0-rc.6 with github:hyt-ao/dsh-llm-qianfan (pnpm recorded dsh-llm-qianfan 0.1.0; profile package.json is the git source). L1 install OK. Plugin tree failed to load: SyntaxError Unexpected identifier 'watchdog' when importing loader entry llm-qianfan — compiled lib/index.js uses ESM `using watchdog = idleWatchdog(...)` (explicit resource management), which Node v22.23.2 on the verify host cannot parse.",
+   "test": "verified",
+   "note": "仓库未加 `dsh-plugin` topic。L1–L3 verified on dsh 0.1.0-rc.8 (Node v22.23.2 with --js-explicit-resource-management wrapper); source github:hyt-ao/dsh-llm-qianfan.",
    "testDate": "2026-08-21",
    "platform": "any",
    "desc": "Baidu Qianfan LLM adapter for DeepSeek Harness: Chat Completions, streaming, tool calling, and thinking mode.",
