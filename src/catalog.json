@@ -31108,8 +31108,8 @@
    "note": "Headless L3 PASS on dsh 0.1.0-rc.8 (2026-08-22): L1 install OK; source dsh-llm-gateway-compat@0.3.0 (npm latest, pinned). profile package.json records dsh-llm-gateway-compat 0.3.0; pnpm resolved 0.3.0; dsh.bundle present (cordis.patch.yml insert id llm-gateway-compat / name dsh-llm-gateway-compat, matches package.json). dump-config + Q&A OK. Not L4'd: L3 was ok, not web-only. Optional Chat Completions providers / gateway API keys not exercised.",
    "testDate": "2026-08-22",
    "platform": "any",
-   "desc": "Community DSH plugin: OpenAI-compatible gateway adapter and dialect fixes (not an official DeepSeek package)",
-   "desc_zh": "给 OpenAI 兼容网关补上 DSH 官方 adapter 容易踩的方言（空 tool-call id/name、role:developer / max_completion_tokens 400）。",
+   "desc": "Pins empty streamed tool-call `id`/`name`, and retries `developer`-role / `max_completion_tokens` 400s into official `llm-pi-ai` `compat`. Optional Chat Completions adapter for extraBody and `api-key` headers.",
+   "desc_zh": "钉住流式 tool-call 空 `id`/`name`，并把 `developer` / `max_completion_tokens` 的 400 写进官方 `llm-pi-ai` `compat` 后重试。可选 Chat Completions adapter 提供 extraBody 和 `api-key` header。",
    "stars": 0,
    "install": "dsh plugin add dsh-llm-gateway-compat",
    "added": "2026-08-22T05:01:27"
