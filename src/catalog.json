@@ -1,7 +1,7 @@
 {
  "schema_version": 3,
  "updated": "2026-08-27",
- "count": 7792,
+ "count": 7793,
  "verified_definition": "L1 install + L2 load + L3 runtime Q&A on dsh 0.1.0-rc.8 (not topic count / manifest-only installability)",
  "plugins": [
   {
@@ -129033,6 +129033,23 @@
    "stars": 0,
    "install": "dsh plugin add github:He2way/dsh-task-console",
    "added": "2026-08-25T08:08:13.052637+00:00"
+  },
+  {
+   "name": "dsh-siyuan",
+   "slug": "dsh-siyuan",
+   "category": "Knowledge",
+   "url": "https://github.com/coolgech/dsh-siyuan",
+   "pkg": "dsh-siyuan",
+   "npm": true,
+   "test": "pending",
+   "note": "L1/L2 PASS（npm dsh-siyuan@0.2.0，dsh 0.1.0-rc.6）：安装与 dump-config 加载正常。完整工具链需本机/局域网运行思源笔记并开启内核 HTTP API（默认 http://127.0.0.1:6806）+ API Token；issue #87 表单填「开箱即用」与 README 不符，目录按 needs-external 处理。L3 headless 问答待验证机补跑。",
+   "testDate": "",
+   "platform": "any",
+   "desc": "DSH plugin for SiYuan Note: 30+ tools over the kernel HTTP API for notebooks, docs, blocks, search, backlinks, assets, daily notes, and templates.",
+   "desc_zh": "DeepSeek Harness 思源笔记插件：通过内核 HTTP API 提供 30+ 工具，覆盖笔记本/文档/块管理、全文搜索、反向链接、资源与每日笔记等。",
+   "stars": 0,
+   "install": "dsh plugin add dsh-siyuan",
+   "added": "2026-08-27T21:17:01"
   },
   {
    "name": "dsh-desktop",
