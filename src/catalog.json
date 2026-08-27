@@ -1,7 +1,7 @@
 {
  "schema_version": 3,
  "updated": "2026-08-27",
- "count": 7789,
+ "count": 7792,
  "verified_definition": "L1 install + L2 load + L3 runtime Q&A on dsh 0.1.0-rc.8 (not topic count / manifest-only installability)",
  "plugins": [
   {
@@ -26753,7 +26753,7 @@
    "pkg": "",
    "npm": false,
    "test": "verified",
-   "note": "",
+   "note": "v0.1.2 安装+加载(L1/L2)通过；L3 运行时问答因验证机 DeepSeek API 余额不足暂缓，待充值后重验。",
    "testDate": "2026-08-25",
    "platform": "any",
    "desc": "Conversation Landmarks (对话地标) for DeepSeek Harness — fixed navigation and hover previews for long agent conversations.",
@@ -27084,6 +27084,23 @@
    "stars": 3,
    "install": "dsh plugin add github:zimai233/dsh-adhd-copilot",
    "added": "2026-08-25T08:08:13.052637+00:00"
+  },
+  {
+   "name": "dsh-client-ui-prism",
+   "slug": "dsh-client-ui-prism",
+   "category": "UI & Skins",
+   "url": "https://github.com/mantonlove/dsh-prism-plugin",
+   "pkg": "",
+   "npm": false,
+   "test": "pending",
+   "note": "L1 安装+L2 加载通过（v1.0.1）；L3 运行时问答被验证机 DeepSeek API 余额不足阻断，待恢复后重验。",
+   "testDate": "",
+   "platform": "any",
+   "desc": "Prism · 棱镜 — a deeply customizable glassmorphism theme plugin for the DeepSeek Harness Web GUI",
+   "desc_zh": "可深度自定义的毛玻璃主题插件：动效、模糊、磨砂感、六区独立透明度、文字/字号、配色、明暗分槽壁纸轮播，含滑轨与三种材质。",
+   "stars": 3,
+   "install": "dsh plugin add github:mantonlove/dsh-prism-plugin",
+   "added": "2026-08-27T02:37:08"
   },
   {
    "name": "dsh-recall",
@@ -125312,6 +125329,23 @@
    "added": "2026-08-25T08:08:13.052637+00:00"
   },
   {
+   "name": "dsh-essentials-bundle",
+   "slug": "dsh-essentials-bundle",
+   "category": "UI & Skins",
+   "url": "https://github.com/lussey820/dsh-essentials-bundle",
+   "pkg": "",
+   "npm": false,
+   "test": "pending",
+   "note": "L1 安装通过但 L2 加载失败：cordis.patch.yml insert 了 loader 条目 name=dsh-toolbox，但 profile 无 dsh-toolbox 包（exports 名为 dsh-essentials-bundle，无此依赖）。需作者修正 bundle 条目后重验。",
+   "testDate": "",
+   "platform": "any",
+   "desc": "DSH (DeepSeek Harness) Web UI all-in-one essentials pack — a bundled collection, not a single-feature plugin: chat wallpaper / token usage stats / session manager / per-turn undo with artifact rollback / built-in file explorer & editor. Zero-dependency, inject-only, never overrides core.",
+   "desc_zh": "DSH Web UI 基础核心全家桶：聊天壁纸、Token 用量统计、会话管理、每轮撤销（带文件回退）、文件浏览器/编辑器。零依赖，只注入不覆盖。",
+   "stars": 0,
+   "install": "dsh plugin add github:lussey820/dsh-essentials-bundle",
+   "added": "2026-08-27T02:37:13"
+  },
+  {
    "name": "dsh-skill-evolve",
    "slug": "dsh-skill-evolve",
    "category": "Knowledge",
@@ -132297,6 +132331,23 @@
    "stars": 0,
    "install": "dsh plugin add github:ericleoo/dsh-escalation-tolerance",
    "added": "2026-08-25T08:08:13.052637+00:00"
+  },
+  {
+   "name": "dsh-full-access-switch",
+   "slug": "dsh-full-access-switch",
+   "category": "Security",
+   "url": "https://github.com/xtd1145/dsh-full-access-switch",
+   "pkg": "",
+   "npm": false,
+   "test": "pending",
+   "note": "L1 安装失败：package.json 依赖 cordis@^4.0.1，npm 最新稳定版为 4.0.0-rc.8（预发布），^4.0.1 无可匹配稳定版。需作者修正依赖版本后重验。",
+   "testDate": "",
+   "platform": "any",
+   "desc": "DSH one-time Full access switch: no per-session confirmation for new workspaces/conversations",
+   "desc_zh": "给 DeepSeek Harness 加「Full access 一次性开关」：打开后新工作区/新对话默认 danger-full-access（never），不再逐个确认。",
+   "stars": 0,
+   "install": "dsh plugin add github:xtd1145/dsh-full-access-switch",
+   "added": "2026-08-27T02:37:11"
   },
   {
    "name": "dsh-req-workbench",
