@@ -1,6 +1,6 @@
 {
   "name": "dshbase-catalog",
-  "version": "0.3.16",
+  "version": "0.3.17",
   "description": "Query the dshbase plugin directory from inside DeepSeek Harness — search, list, and get install commands for 1700+ plugins.",
   "type": "module",
   "main": "dist/index.js",
