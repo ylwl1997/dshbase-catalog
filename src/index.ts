@@ -72,11 +72,33 @@ const byStars = [...plugins].sort((a, b) => (b.stars || 0) - (a.stars || 0));
 // 按收录时间降序（新收录在前）
 const byNew = [...plugins].sort((a, b) => (b.added || '').localeCompare(a.added || ''));
 
+// Status tiers. Anything that is not verified/listed (incl. empty/unknown) folds into pending,
+// so verified + listed + pending always equals the total.
+type Tier = 'verified' | 'listed' | 'pending';
+function tierOf(p: Plugin): Tier {
+  return p.test === 'verified' ? 'verified' : p.test === 'listed' ? 'listed' : 'pending';
+}
+function statusZh(p: Plugin) {
+  const t = tierOf(p);
+  return t === 'verified' ? '已验证' : t === 'listed' ? '已收录（未实测）' : '未验证';
+}
+function statusLabel(p: Plugin) {
+  const t = tierOf(p);
+  if (t === 'verified') return '✅ 已验证 (verified)';
+  if (t === 'listed') return '📋 已收录（未实测） (listed (not yet install-tested))';
+  return '⏳ 未验证 (pending)';
+}
+function statusCounts(list: Plugin[]) {
+  const c = { verified: 0, listed: 0, pending: 0 };
+  for (const p of list) c[tierOf(p)]++;
+  return c;
+}
+
 function fmtHit(p: Plugin, i?: number) {
   const idx = i !== undefined ? `${i + 1}. ` : '';
   const star = `★${p.stars || 0}`;
-  // 两档：已验证 / 未验证（网站已从三档收敛，不再有 broken）
-  const status = p.test === 'verified' ? '已验证' : '未验证';
+  // 三档：已验证 / 已收录（未实测）/ 未验证
+  const status = statusZh(p);
   return `${idx}${p.name} [${status}]${pfTag(p)} ${star}\n   ${p.desc}\n   Install: ${p.install}`;
 }
 
@@ -128,7 +150,7 @@ export function apply(ctx: Context) {
     async execute(args: any) {
       const p = plugins.find((x) => x.name === args.name);
       if (!p) return `Plugin "${args.name}" not found. Use search_dsh_plugins to find it.`;
-      const status = p.test === 'verified' ? '✅ 已验证 (verified)' : '⏳ 未验证 (pending)';
+      const status = statusLabel(p);
       const src = p.npm ? `npm (${p.pkg})` : 'GitHub source';
       const pf = p.platform && p.platform !== 'any' ? (PF[p.platform] || p.platform) : 'any';
       return [
@@ -188,8 +210,7 @@ export function apply(ctx: Context) {
     output: { schema: { type: 'string' }, render: (_a: any, v: string) => text(v) },
     async execute() {
       const total = plugins.length;
-      const verified = plugins.filter((p) => p.test === 'verified').length;
-      const pending = plugins.filter((p) => p.test === 'pending').length;
+      const { verified, listed, pending } = statusCounts(plugins);
       const npmCount = plugins.filter((p) => p.npm).length;
       const winCount = plugins.filter((p) => p.platform === 'win32').length;
       const macCount = plugins.filter((p) => p.platform === 'macos').length;
@@ -201,6 +222,7 @@ export function apply(ctx: Context) {
         'dshbase plugin directory stats:',
         `  Total: ${total}`,
         `  ✅ Verified: ${verified}`,
+        `  📋 Listed (not yet install-tested) / 已收录（未实测）: ${listed}`,
         `  ⏳ Pending: ${pending}`,
         `  On npm: ${npmCount} · GitHub source: ${total - npmCount}`,
         `  Platform-specific: ${winCount} Windows · ${macCount} macOS`,
