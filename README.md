@@ -8,6 +8,8 @@ Query the [dshbase](https://dshbase.com) plugin directory from inside DeepSeek H
 dsh plugin add dshbase-catalog
 ```
 
+Requires DeepSeek Harness 0.2, including Desktop `0.2.0-rc.2`. Framework packages (`@deepseek-ai/dsh`, `@deepseek-ai/dsh-tools`, `@deepseek-ai/cordis`) are `peerDependencies` resolved from the host install, and every tool `parameters` block is a JSON Schema object root.
+
 ## Tools
 
 | Tool | Description |
