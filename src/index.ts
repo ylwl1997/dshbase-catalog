@@ -1,5 +1,4 @@
 import type { Context } from '@deepseek-ai/cordis';
-import { defineTool } from '@deepseek-ai/dsh-tools';
 import catalog from './catalog.json' with { type: 'json' };
 
 export const name = 'dshbase-catalog';
@@ -33,6 +32,41 @@ function pfTag(p: Plugin) {
   return p.platform && p.platform !== 'any' ? ` · ${PF[p.platform] || p.platform}` : '';
 }
 
+function takeLimit(value: unknown, fallback: number): number {
+  if (typeof value === 'number' && Number.isFinite(value) && value > 0) return Math.floor(value);
+  if (typeof value === 'string' && value.trim() !== '') {
+    const n = parseInt(value, 10);
+    if (Number.isFinite(n) && n > 0) return n;
+  }
+  return fallback;
+}
+
+// DSH 0.2 stores tool parameters as JSON Schema and rejects the 0.1 property-map
+// DSL at activation. Register the object-root schema directly. defineTool()
+// compiles that DSL and throws on this shape (`required` array, `additionalProperties`).
+type ToolParameters = {
+  type: 'object';
+  properties: Record<string, { type: string; description?: string }>;
+  required?: string[];
+  additionalProperties: boolean;
+};
+
+interface ToolRegistry {
+  register(definition: {
+    name: string;
+    description: string;
+    parameters: ToolParameters;
+    output: { schema: { type: 'string' }; render: (args: unknown, value: string) => ReturnType<typeof text> };
+    execute: (args: any, exec?: unknown) => Promise<string>;
+  }): unknown;
+}
+
+// `tools` is declared by the host's @deepseek-ai/dsh-tools augmentation of Context.
+// This package does not import that module at runtime, so the register call is typed locally.
+function registerTool(ctx: Context, tool: Parameters<ToolRegistry['register']>[0]) {
+  (ctx as Context & { tools: ToolRegistry }).tools.register(tool);
+}
+
 // 按星数降序排好的副本
 const byStars = [...plugins].sort((a, b) => (b.stars || 0) - (a.stars || 0));
 // 按收录时间降序（新收录在前）
@@ -48,18 +82,23 @@ function fmtHit(p: Plugin, i?: number) {
 
 export function apply(ctx: Context) {
   // 1. 搜索插件
-  ctx.tools.register(defineTool({
+  registerTool(ctx, {
     name: 'search_dsh_plugins',
     description:
       'Search the dshbase plugin directory for DeepSeek Harness plugins by keyword. Matches against plugin name, category, or description (English & Chinese). Returns each hit with its install command and verification status so you can install it directly.',
     parameters: {
-      query: { type: 'string', required: true, description: 'Keyword (e.g. "memory", "terminal", "视觉", "浏览器")' },
-      limit: { type: 'string', description: 'Max results (default 10)' },
+      type: 'object',
+      properties: {
+        query: { type: 'string', description: 'Keyword (e.g. "memory", "terminal", "视觉", "浏览器")' },
+        limit: { type: 'number', description: 'Max results (default 10)' },
+      },
+      required: ['query'],
+      additionalProperties: false,
     },
     output: { schema: { type: 'string' }, render: (_a: any, v: string) => text(v) },
     async execute(args: any) {
       const q = (args.query || '').toLowerCase();
-      const lim = parseInt(args.limit || '10', 10) || 10;
+      const lim = takeLimit(args.limit, 10);
       const hits = plugins.filter((p) =>
         !q ||
         p.name.toLowerCase().includes(q) ||
@@ -70,15 +109,20 @@ export function apply(ctx: Context) {
       if (!hits.length) return `No plugins matched "${args.query}". Try a broader keyword.`;
       return `Found ${hits.length} plugins (of ${plugins.length} on dshbase):\n\n${hits.map((p, i) => fmtHit(p, i)).join('\n\n')}`;
     },
-  }));
+  });
 
   // 2. 插件详情 + 安装命令
-  ctx.tools.register(defineTool({
+  registerTool(ctx, {
     name: 'get_dsh_plugin',
     description:
       'Get details, verification status, and the exact install command for a specific DeepSeek Harness plugin from the dshbase directory.',
     parameters: {
-      name: { type: 'string', required: true, description: 'Plugin name (e.g. "dsh-memory")' },
+      type: 'object',
+      properties: {
+        name: { type: 'string', description: 'Plugin name (e.g. "dsh-memory")' },
+      },
+      required: ['name'],
+      additionalProperties: false,
     },
     output: { schema: { type: 'string' }, render: (_a: any, v: string) => text(v) },
     async execute(args: any) {
@@ -100,21 +144,25 @@ export function apply(ctx: Context) {
         `More: ${p.url}`,
       ].filter((l) => l !== '').join('\n');
     },
-  }));
+  });
 
   // 3. 列出插件（热门 / 新收录 / 分类）
-  ctx.tools.register(defineTool({
+  registerTool(ctx, {
     name: 'list_dsh_plugins',
     description:
       'List DeepSeek Harness plugins from dshbase. Use sort="hot" for most-starred, sort="new" for recently added, or pass a category to list plugins in that category.',
     parameters: {
-      category: { type: 'string', description: 'Category name (e.g. "Developer"). Omit for all categories.' },
-      sort: { type: 'string', description: 'Sort: "hot" (by stars, default) or "new" (recently added)' },
-      limit: { type: 'string', description: 'Max results (default 20)' },
+      type: 'object',
+      properties: {
+        category: { type: 'string', description: 'Category name (e.g. "Developer"). Omit for all categories.' },
+        sort: { type: 'string', description: 'Sort: "hot" (by stars, default) or "new" (recently added)' },
+        limit: { type: 'number', description: 'Max results (default 20)' },
+      },
+      additionalProperties: false,
     },
     output: { schema: { type: 'string' }, render: (_a: any, v: string) => text(v) },
     async execute(args: any) {
-      const lim = parseInt(args.limit || '20', 10) || 20;
+      const lim = takeLimit(args.limit, 20);
       let pool = args.sort === 'new' ? byNew : byStars;
       if (args.category) {
         const cat = String(args.category);
@@ -125,14 +173,18 @@ export function apply(ctx: Context) {
       const label = args.sort === 'new' ? 'recently added' : 'most-starred';
       return `Top ${hits.length} ${label} plugins${args.category ? ` in "${args.category}"` : ''}:\n\n${hits.map((p, i) => fmtHit(p, i)).join('\n\n')}`;
     },
-  }));
+  });
 
   // 4. 站点统计
-  ctx.tools.register(defineTool({
+  registerTool(ctx, {
     name: 'get_dsh_stats',
     description:
       'Get live stats of the dshbase plugin directory: total plugins, verification status counts, and category distribution.',
-    parameters: {},
+    parameters: {
+      type: 'object',
+      properties: {},
+      additionalProperties: false,
+    },
     output: { schema: { type: 'string' }, render: (_a: any, v: string) => text(v) },
     async execute() {
       const total = plugins.length;
@@ -157,14 +209,18 @@ export function apply(ctx: Context) {
         catLines,
       ].join('\n');
     },
-  }));
+  });
 
   // 5. 分类列表
-  ctx.tools.register(defineTool({
+  registerTool(ctx, {
     name: 'get_dsh_categories',
     description:
       'List the plugin categories in the dshbase directory with their plugin counts. Use this to discover what categories exist before listing plugins.',
-    parameters: {},
+    parameters: {
+      type: 'object',
+      properties: {},
+      additionalProperties: false,
+    },
     output: { schema: { type: 'string' }, render: (_a: any, v: string) => text(v) },
     async execute() {
       const lines = CATEGORIES.map((c) => {
@@ -173,5 +229,5 @@ export function apply(ctx: Context) {
       });
       return `dshbase categories:\n\n${lines.join('\n')}`;
     },
-  }));
+  });
 }

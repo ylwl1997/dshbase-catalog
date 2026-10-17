@@ -12,7 +12,7 @@ jobs:
           node-version: 24
 
       - name: Install dsh + pnpm
-        run: npm install -g @deepseek-ai/dsh pnpm
+        run: npm install -g @deepseek-ai/dsh@0.2.0-rc.2 pnpm
 
       - name: Set up profile with catalog
         run: |
@@ -28,7 +28,7 @@ jobs:
             node-pty: true
             protobufjs: true
           EOF
-          dsh plugin --profile e2e add @deepseek-ai/dsh-base@0.1.0-rc.6 @deepseek-ai/dsh-headless@0.1.0-rc.6 dshbase-catalog@latest
+          dsh plugin --profile e2e add @deepseek-ai/dsh-base@0.2.0-rc.2 @deepseek-ai/dsh-headless@0.2.0-rc.2 dshbase-catalog@latest
           echo "--- profile bundles ---"
           cat "$DSH_HOME/profiles/e2e/package.json"
 
