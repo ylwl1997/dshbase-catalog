@@ -1,7 +1,7 @@
 {
  "schema_version": 2,
- "updated": "2026-10-20",
- "count": 20000,
+ "updated": "2026-10-26",
+ "count": 20006,
  "plugins": [
   {
    "name": "rea",
@@ -64560,15 +64560,15 @@
   {
    "name": "dsh-git-graph",
    "category": "Developer",
-   "url": "https://github.com/whiteplusms/dsh-git-graph",
+   "url": "https://github.com/WhitePlusMS/dsh-git-graph",
    "pkg": "",
    "npm": false,
-   "test": "pending",
+   "test": "listed",
    "platform": "any",
    "desc": "Read-only Git Graph sidebar for DeepSeek Harness Web: commit history, file diffs, two-commit comparison and full historical source. DSH 原生侧栏 Git 可视化插件。",
-   "desc_zh": "",
+   "desc_zh": "DSH Web 原生右侧栏只读 Git Graph：提交历史、分支/标签、文件 Diff、未提交改动、两提交比较与历史文件原文。",
    "stars": 2,
-   "install": "dsh plugin add github:whiteplusms/dsh-git-graph",
+   "install": "dsh plugin add github:WhitePlusMS/dsh-git-graph",
    "added": "2026-10-14"
   },
   {
@@ -83428,6 +83428,20 @@
    "stars": 2,
    "install": "dsh plugin add github:xiaoweiqianluo/dsh-pardofelis-widget",
    "added": "2026-10-15"
+  },
+  {
+   "name": "dsh-long-novel-workbench",
+   "category": "Content",
+   "url": "https://github.com/micellince/dsh-long-novel-workbench",
+   "pkg": "dsh-long-novel-workbench",
+   "npm": true,
+   "test": "verified",
+   "platform": "any",
+   "desc": "长篇中文小说工作台：章节/时间线/事实账本/伏笔/冲突/人物/高光/审稿/提案/对齐/9 Agent 分工/名家风格预设，AI 可直接生成与审稿。",
+   "desc_zh": "注意力优先的长篇中文小说工作台：章节编辑器、时间线、事实账本、世界/地点地图、注意力评分、Agent 分工与整书生成扩写。",
+   "stars": 2,
+   "install": "dsh plugin add dsh-long-novel-workbench",
+   "added": "2026-10-25T21:16:40"
   },
   {
    "name": "dsh-safe-delete",
@@ -121550,6 +121564,20 @@
    "stars": 1,
    "install": "dsh plugin add dsh-steer-note",
    "added": "2026-10-20T10:50:11"
+  },
+  {
+   "name": "dsh-models-sort",
+   "category": "UI & Skins",
+   "url": "https://github.com/Faust-zyb/dsh-models-sort",
+   "pkg": "",
+   "npm": false,
+   "test": "listed",
+   "platform": "any",
+   "desc": "给 DSH 设置页的模型供应商列表加 CC Switch 式拖拽排序与隐藏：松手顺序立即生效并写回 cordis.patch.yml（自动备份），可整行隐藏供应商并从聊天框模型选择器移除。",
+   "desc_zh": "给 DSH 设置页模型供应商列表加拖拽排序与整行隐藏，顺序写回 cordis.patch.yml。",
+   "stars": 1,
+   "install": "dsh plugin add github:Faust-zyb/dsh-models-sort",
+   "added": "2026-10-25T21:16:47"
   },
   {
    "name": "dsh-plugin-jinji",
@@ -214458,10 +214486,10 @@
   {
    "name": "@JeffTsuiCUG/dsh-connect-minimaxcode",
    "category": "AI Models",
-   "url": "https://github.com/jefftsuicug/dsh-connect-minimaxcode",
+   "url": "https://github.com/JeffTsuiCUG/dsh-connect-minimaxcode",
    "pkg": "dsh-connect-minimaxcode",
    "npm": true,
-   "test": "listed",
+   "test": "verified",
    "platform": "any",
    "desc": "Bring MiniMax Code desktop app models into DeepSeek Harness (DSH). Unofficial, MIT.",
    "desc_zh": "",
@@ -234418,6 +234446,20 @@
    "stars": 0,
    "install": "dsh plugin add dsh-temp-note",
    "added": "2026-10-20T10:50:10"
+  },
+  {
+   "name": "dsh-split-workspace",
+   "category": "UI & Skins",
+   "url": "https://github.com/mhlywxl/dsh-split-workspace",
+   "pkg": "dsh-split-workspace",
+   "npm": true,
+   "test": "verified",
+   "platform": "any",
+   "desc": "Split-screen workspace for DeepSeek Harness (DSH) Desktop: unlimited native panes, side-by-side, stacked and 2x2 grid layouts, drag to rearrange.",
+   "desc_zh": "把 DSH 对话区拆成任意数量的原生窗格：左右、上下、田字 2×2 与自动网格，每个窗格都是独立会话。",
+   "stars": 0,
+   "install": "dsh plugin add dsh-split-workspace",
+   "added": "2026-10-25T21:16:33"
   },
   {
    "name": "dsh-mcp-proxy",
@@ -275844,6 +275886,48 @@
    "stars": 0,
    "install": "dsh plugin add github:summmmerz/dsh-spend-guard",
    "added": "2026-10-15"
+  },
+  {
+   "name": "dsh-enter-swap",
+   "category": "Productivity",
+   "url": "https://github.com/xuqiuba888/dsh-enter-swap",
+   "pkg": "",
+   "npm": false,
+   "test": "listed",
+   "platform": "any",
+   "desc": "DSH web 插件：Enter=换行，Shift+Enter=发送。极简零依赖",
+   "desc_zh": "Enter=换行，Shift+Enter=发送。极简零依赖",
+   "stars": 0,
+   "install": "dsh plugin add github:xuqiuba888/dsh-enter-swap",
+   "added": "2026-10-25T21:16:17"
+  },
+  {
+   "name": "dsh-coding-sound",
+   "category": "Productivity",
+   "url": "https://github.com/mhlywxl/dsh-coding-sound",
+   "pkg": "dsh-coding-sound",
+   "npm": true,
+   "test": "verified",
+   "platform": "any",
+   "desc": "Generative background music and notification chimes for DeepSeek Harness.",
+   "desc_zh": "用声音盯住 Agent：模型输出时演奏生成式背景音乐，完成/等待提示音与思考、回答、工具执行的阶段声音都可分别调节。",
+   "stars": 0,
+   "install": "dsh plugin add dsh-coding-sound",
+   "added": "2026-10-25T21:16:25"
+  },
+  {
+   "name": "dsh-deepworker",
+   "category": "Productivity",
+   "url": "https://github.com/tinyblckc0000al/dsh-deepworker",
+   "pkg": "dsh-deepworker",
+   "npm": true,
+   "test": "verified",
+   "platform": "any",
+   "desc": "DeepWorker — 把 DSH 变成更便捷、更沉浸的工作台。基于dsh底层功能针对日常需求集成多个“一键触达”。会话操作 （任意轮次：重试、编辑、引用、模式新建、分支）/ 笔记 / 摘要 / 查找 / 会话专注锁 / 工作区命令执行按钮。",
+   "desc_zh": "把 DSH 变成更便捷、更沉浸的工作台：会话操作、笔记、摘要、查找、专注锁与工作区命令一键触达。",
+   "stars": 0,
+   "install": "dsh plugin add dsh-deepworker",
+   "added": "2026-10-26T00:01:01"
   },
   {
    "name": "dsh-codex-canvas",
