@@ -1,7 +1,7 @@
 {
  "schema_version": 3,
  "updated": "2026-11-07",
- "count": 20041,
+ "count": 20042,
  "verified_definition": "L1 install + L2 load + L3 runtime Q&A on dsh 0.1.0-rc.8 (not topic count / manifest-only installability)",
  "plugins": [
   {
@@ -38865,6 +38865,23 @@
    "stars": 6,
    "install": "dsh plugin add github:niuhuoshan/dsh-connect",
    "added": "2026-10-14"
+  },
+  {
+   "name": "@xrn1997/dsh-session-delete",
+   "slug": "dsh-session-delete-32",
+   "category": "Data",
+   "url": "https://github.com/xrn1997/dsh-session-delete",
+   "pkg": "@xrn1997/dsh-session-delete",
+   "npm": true,
+   "test": "verified",
+   "note": "Issue #283 intake. Upgraded the existing Storage listed row (slug dsh-session-delete-32, added 2026-10-15) to Verified and moved it to Data. Hard gates present (dsh-plugin topic + Apache-2.0 LICENSE + cordis.patch.yml at repo root). Verified on intake — no real-device check; marketplace runtime L1–L3/L4 not run by dshbase. npm @xrn1997/dsh-session-delete@0.6.1 (maintainer xrn1997; repository xrn1997/dsh-session-delete; gitHead b6d19259ea33c96bc7a9b45c284a93114d528c1b; published 2026-11-05T00:48:44Z; tarball sha1 e1223d83eff204fe56098c6e1240c34d7d041174). Install: dsh plugin --profile web add @xrn1997/dsh-session-delete (or the profile you chat in). Restart the host after install; the Node side does not hot-reload. GitHub Release V0.6.1; pin github:xrn1997/dsh-session-delete#V0.6.1 (b6d19259ea33c96bc7a9b45c284a93114d528c1b). Tag and npm gitHead match. Default-branch HEAD 5ed40c56cf3f2722c11b393112f3210431f3fb89 is two commits after the tag (compliance-audit fixes, then an options form and /config segment) and does not bump the version. Those commits also rename the patch row id from session-delete to xrn1997-session-delete; published 0.6.1 still uses id session-delete. Declares node >=24 and dsh >=0.1.7-rc.2 <0.3.0-0. Peer @deepseek-ai/cordis ^4.0.4 is not marked optional; peer react ^18.3.1 is optional. The host already provides both, and the issue says no external account, so this is not an external account. No npm dependencies. Web client: session-row delete, multi-select, and a sidebar recycle-bin panel. Delete moves the session into $DSH_HOME/session-trash/ (default ~/.dsh/session-trash/); restore puts it back; permanent delete and empty-trash are explicit and do not auto-expire. A running session, including a running subagent child, is refused. Local only: no network and no upload. Author package.json at V0.6.1 records desktop-compatible DSH releases 0.2.0-rc.2, 0.2.1-rc.1, 0.2.1-rc.2, 0.2.1-rc.3, 0.2.1-rc.5, and 0.2.2-rc.1; dshbase did not re-run them. Distinct from the other session-delete plugins already cataloged, including xohmai/dsh-session-delete, bakacirno233/dsh-session-delete, and stansz/dsh-session-delete. Deduped by GitHub URL; slug kept.",
+   "testDate": "2026-11-07",
+   "platform": "any",
+   "desc": "Session recycle bin for DeepSeek Harness. Delete moves a session into a local trash you can restore; permanent delete is a separate explicit action.",
+   "desc_zh": "会话回收站：在 DeepSeek Harness 里删除会话时先移入本机回收站（可恢复），彻底删除是另设的显式动作。",
+   "stars": 6,
+   "install": "dsh plugin add @xrn1997/dsh-session-delete",
+   "added": "2026-10-15"
   },
   {
    "name": "dsh-mobile-gate",
@@ -163868,23 +163885,6 @@
    "added": "2026-10-15"
   },
   {
-   "name": "@xrn1997/dsh-session-delete",
-   "slug": "dsh-session-delete-32",
-   "category": "Storage",
-   "url": "https://github.com/xrn1997/dsh-session-delete",
-   "pkg": "",
-   "npm": false,
-   "test": "listed",
-   "note": "",
-   "testDate": "",
-   "platform": "any",
-   "desc": "会话删除插件",
-   "desc_zh": "",
-   "stars": 1,
-   "install": "dsh plugin add github:xrn1997/dsh-session-delete",
-   "added": "2026-10-15"
-  },
-  {
    "name": "@stansz/dsh-session-delete",
    "slug": "dsh-session-delete-33",
    "category": "Storage",
@@ -285161,6 +285161,23 @@
    "stars": 0,
    "install": "dsh plugin add dsh-balance-ball",
    "added": "2026-11-05T04:45:00"
+  },
+  {
+   "name": "dsh-caption-balance",
+   "slug": "dsh-caption-balance",
+   "category": "UI & Skins",
+   "url": "https://github.com/resnowh/dsh-caption-balance",
+   "pkg": "",
+   "npm": false,
+   "test": "verified",
+   "note": "Issue #287 intake. Hard gates present (dsh-plugin topic + MIT LICENSE + cordis.patch.yml at repo root). Verified on intake — no real-device check; marketplace runtime L1–L3/L4 not run by dshbase. Not on npm (registry 404 for dsh-caption-balance). Package id dsh-caption-balance@0.2.1. Install: dsh plugin --profile desktop add github:resnowh/dsh-caption-balance. GitHub Release v0.2.1; pin github:resnowh/dsh-caption-balance#v0.2.1 (40c68f2116a20bba0f095fc741659a7ba9d93d8c). Tag matches package.json version 0.2.1. Default-branch HEAD a846ee25958925070f741e6d97e7bb54d07c8007 is four commits after the tag (awesome-dsh-plugin listing draft, fallback-chip test, CI test discovery, CI badge) and does not bump the version. Declares dsh >=0.2.2-rc.1 <0.3.0-0. No npm dependencies and no peerDependencies; no build step. Host route GET /api/dsh-caption-balance/summary answers only loopback, same-origin, non-cross-site callers. Balance comes from deepseekAccount.getBalance, the same source as Settings → Account & balance; the plugin does not read or store credentials. Today's spend is an estimate from local session logs under $DSH_HOME/sessions, using the off-peak price table; peak hours (Beijing weekdays 09:00–12:00 and 14:00–18:00) multiply by peakMultiplier (default 2). The issue says no external account. Windows desktop places the chip in the caption menu after 应用 / 编辑; macOS desktop and dsh web fall back to conversation.session.header.utilities after 4 seconds. Restart the app and hard-reload after install. Author README requires DeepSeek Harness desktop 0.2.2-rc.1 or newer; dshbase did not re-run it. Distinct from dsh-balance-ball, dsh-account-balance, dsh-balance, deepseek-usage, and dsh-usage.",
+   "testDate": "2026-11-07",
+   "platform": "any",
+   "desc": "A one-line readout in the DeepSeek Harness desktop title bar, just after 应用 / 编辑: account balance, today's spend, and the current peak or off-peak window. macOS desktop and dsh web fall back to the same chip in the session header.",
+   "desc_zh": "在桌面端标题栏（应用 / 编辑 右侧）显示账号余额、今日花费和当前峰谷时段。macOS 桌面端和 dsh web 没有这排菜单时，退回会话标题栏显示同款读数。",
+   "stars": 0,
+   "install": "dsh plugin add github:resnowh/dsh-caption-balance",
+   "added": "2026-11-07T09:34:41"
   },
   {
    "name": "dsh-mcp-proxy",
